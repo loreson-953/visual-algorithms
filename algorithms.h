@@ -1,6 +1,9 @@
 #ifndef ALGORITHMS_H
 #define ALGORITHMS_H
 
+// We need a global dynamic array
+extern int output[];
+
 // Merge
 
 void merge_sort(int array[], int length);

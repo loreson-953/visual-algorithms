@@ -1,23 +1,26 @@
 #include "algorithms.h"
 
-// Merge
+//
+extern int output[];
 
-void merge_sort(int array[], int length) {
-	merge_sort_recursion(array, 0, length - 1);
-}
+/* // Merge */
 
-void merge_sort_recursion(int array[], int left, int right) {
-	if (left < right) {
-		int midpoint = left + (right - left) / 2;
+/* void merge_sort(int array[], int length) { */
+/* 	merge_sort_recursion(array, 0, length - 1); */
+/* } */
 
-		merge_sort_recursion(array, left, midpoint);
-		merge_sort_recursion(array, midpoint + 1, right);
+/* void merge_sort_recursion(int array[], int left, int right) { */
+/* 	if (left < right) { */
+/* 		int midpoint = left + (right - left) / 2; */
 
-		merge_sorted_arrays(array, left, midpoint, right);
-	}
-}
+/* 		merge_sort_recursion(array, left, midpoint); */
+/* 		merge_sort_recursion(array, midpoint + 1, right); */
 
-void merge_sorted_arrays(int array[], int left, int midpoint, int right) {
+/* 		merge_sorted_arrays(array, left, midpoint, right); */
+/* 	} */
+/* } */
+
+/* void merge_sorted_arrays(int array[], int left, int midpoint */, int right) {
 	int left_length = midpoint - left + 1;
 	int right_length = right - midpoint;
 	int temp_left[left_length];
