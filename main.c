@@ -9,6 +9,13 @@ int* bubble_sort(int array[], int length);
 
 int main(void) {
 	int test_array[3] = {2, 5, 1};
+	int *final_array = (int *)malloc(sizeof(int));
+	
+	final_array = merge_sort(test_array, 3);
+
+	for (int i = 0; i < sizeof(final_array); i++) {
+		printf("%d\n", final_array[i]);
+	}
 	
 	return 0;		
 }
