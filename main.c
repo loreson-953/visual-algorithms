@@ -1,29 +1,49 @@
 #include <stdio.h>
 #include <stdlib.h>
 
+typedef struct {
+	int *number;
+	size_t count;
+	size_t capacity;
+} dynamic_array;
+
+/*
 int* merge_sort(int array[], int length);
 int* merge_sort_recursion(int array[], int left, int right);
 int* merge_sorted_arrays(int array[], int left, int midpoint, int right);
 
 int* bubble_sort(int array[], int length);
+*/
 
 int main(void) {
-	int test_array[3] = {2, 5, 1};
-	int *final_array = (int *)malloc(sizeof(int));
-	
-	final_array = merge_sort(test_array, 3);
 
-	for (int i = 0; i < sizeof(final_array); i++) {
-		printf("%d\n", final_array[i]);
-	}
+	int input = 0;
+	dynamic_array test = {0};
+	test.capacity = sizeof(int);
 	
+	printf("Give me some numbers.\n");
+	scanf("%d\n", &input);
+	
+	while (input != -1) {
+		if (test.count >= test.capacity) {
+			test.capacity += sizeof(int);
+			test.number = realloc(test.number, test.capacity * sizeof(test.number));
+		}
+
+		test.number[test.count++] = input;		
+	}
+
+	for (size_t i = 0; i < test.count; i++)
+		printf("%d\n", test.number[i]);
+		
 	return 0;		
 }
 
+/*
+
 // Merge 
 int* merge_sort(int array[], int length) { 
-	int *output;
-	
+	dynamic_array output = {0};
 	
 	merge_sort_recursion(array, 0, length - 1);
 }
@@ -67,7 +87,7 @@ int* merge_sorted_arrays(int array[], int left, int midpoint, int right) {
 // Bubble
 
 int* bubble_sort(int array[], int length) {
-	int *output;
+	dynamic_array output;
 	int size;
 	
 	output = (int *)malloc(sizeof(int));
@@ -83,11 +103,14 @@ int* bubble_sort(int array[], int length) {
 
 				output = realloc(output, size * sizeof(int));
 			}
+
+			
 		}
 
-		output = realloc(output, size * sizeof(int));
-	}
+		
+	}	
 	printf("%d\n", size);
 
 	return output;
 }
+*/
