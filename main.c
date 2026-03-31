@@ -1,13 +1,25 @@
 #include <stdio.h>
 #include <stdlib.h>
 
+
 typedef struct {
 	int *number;
 	size_t count;
+	size_t row;
+	size_t column;
 	size_t capacity;
 } dynamic_array;
 
-/*
+#define append_array(array, input)\
+do {\
+	if (array.count >= array.capacity) {\
+		array.capacity += sizeof(int);\
+		array.number = realloc(array.number, array.capacity * sizeof(array.number));\
+	}\
+	array.number[test.count++] = input;\
+ } while(0)
+
+	/*
 int* merge_sort(int array[], int length);
 int* merge_sort_recursion(int array[], int left, int right);
 int* merge_sorted_arrays(int array[], int left, int midpoint, int right);
@@ -18,19 +30,18 @@ int* bubble_sort(int array[], int length);
 int main(void) {
 
 	int input = 0;
-	dynamic_array test = {0};
-	test.capacity = sizeof(int);
+	dynamic_array test;
+	test.capacity = 10;
+	test.row = 0;
+	test.number = malloc(test.capacity * sizeof(int));
+	
 	
 	printf("Give me some numbers.\n");
-	scanf("%d\n", &input);
+	scanf("%d", &input);
 	
 	while (input != -1) {
-		if (test.count >= test.capacity) {
-			test.capacity += sizeof(int);
-			test.number = realloc(test.number, test.capacity * sizeof(test.number));
-		}
-
-		test.number[test.count++] = input;		
+		append_array(test, input);
+		scanf("%d", &input);
 	}
 
 	for (size_t i = 0; i < test.count; i++)
@@ -84,24 +95,37 @@ int* merge_sorted_arrays(int array[], int left, int midpoint, int right) {
 	}
 }
 
+*/
+
+/*
+
 // Bubble
 
 int* bubble_sort(int array[], int length) {
+
+	// Create and initialize our array
 	dynamic_array output;
-	int size;
+	output.capacity = 10;
+	output.count = 0;
+	output.number = malloc(output.capacity * sizeof(int));
 	
-	output = (int *)malloc(sizeof(int));
-	
-	for (int i = 0; i < length - 1; i++ && size++) {
+	for (int i = 0; i < length - 1; i++) {
 		int temp = 0;
 		
-		for (int j = 0; j < length - i - 1; j++ && size++) {
+		for (int j = 0; j < length - i - 1; j++) {
+			
+
 			if (array[j] > array[j + 1]) {
+				if (output.count >= output.capacity) {
+					output.capacity += sizeof(int);
+					output.number = realloc(output.number, output.capacity * sizeof(output.number));
+				}
+
 				temp = array[j];
 				array[j] = array[j + 1];
 				array[j + 1] = temp;
 
-				output = realloc(output, size * sizeof(int));
+				
 			}
 
 			
@@ -111,6 +135,7 @@ int* bubble_sort(int array[], int length) {
 	}	
 	printf("%d\n", size);
 
-	return output;
+	return &output;
 }
+
 */
