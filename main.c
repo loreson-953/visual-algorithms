@@ -5,8 +5,6 @@
 typedef struct {
 	int *number;
 	size_t count;
-	size_t row;
-	size_t column;
 	size_t capacity;
 } dynamic_array;
 
@@ -16,38 +14,79 @@ do {\
 		array.capacity += sizeof(int);\
 		array.number = realloc(array.number, array.capacity * sizeof(array.number));\
 	}\
-	array.number[test.count++] = input;\
+	array.number[array.count++] = input;\
  } while(0)
+
+void print_array(int array[], int length);
 
 	/*
 int* merge_sort(int array[], int length);
 int* merge_sort_recursion(int array[], int left, int right);
 int* merge_sorted_arrays(int array[], int left, int midpoint, int right);
+	*/
 
-int* bubble_sort(int array[], int length);
-*/
+void bubble_sort(int array[], int length);
+
 
 int main(void) {
 
-	int input = 0;
-	dynamic_array test;
-	test.capacity = 10;
-	test.row = 0;
-	test.number = malloc(test.capacity * sizeof(int));
+	dynamic_array input;
+	input.count = 0;
+	input.capacity = 10;
+	input.number = malloc(input.capacity * sizeof(input.number));
+
+	size_t num;
+	int length = 0;
+	int choice;
 	
 	
-	printf("Give me some numbers.\n");
-	scanf("%d", &input);
-	
-	while (input != -1) {
-		append_array(test, input);
-		scanf("%d", &input);
+	printf("Please input positive integers you wish to sort.\n");
+	printf("When you are done, input -1.\n");
+	scanf("%zu", &num);
+	while (num != -1) {
+		length++;
+		append_array(input, num);
+		scanf("%zu", & num);
 	}
 
-	for (size_t i = 0; i < test.count; i++)
-		printf("%d\n", test.number[i]);
-		
+	printf("\nWhich sorting algorithm do you want to use?\n");
+	printf("Input a number to make your choice.\n");
+	printf("0. Exit\n");
+	printf("1. Bubble Sort\n");
+	scanf("%d", &choice);
+
+	while (choice != 0) {
+		if (choice == 1) {
+			printf("Your original array:\n");
+			print_array(input.number, length);
+		}
+			
+		switch (choice) {
+		case 1:
+			bubble_sort(input.number, length);
+			choice = 99;
+			break;
+		case 99:
+			break;
+		default:
+			printf("That is not a choice.\n");
+			choice = 99;
+			break;
+		}
+
+		printf("Make another choice or exit.\n");
+		scanf("%d", &choice);
+	}
+	
+	
 	return 0;		
+}
+
+void print_array(int array[], int length) {
+		for (int i = 0; i < length; i++)
+		printf("%d ", array[i]);
+	printf("\n");
+
 }
 
 /*
@@ -97,17 +136,21 @@ int* merge_sorted_arrays(int array[], int left, int midpoint, int right) {
 
 */
 
-/*
+
 
 // Bubble
 
-int* bubble_sort(int array[], int length) {
+void bubble_sort(int array[], int length) {
 
 	// Create and initialize our array
 	dynamic_array output;
 	output.capacity = 10;
 	output.count = 0;
 	output.number = malloc(output.capacity * sizeof(int));
+
+	// Initial copy of original array
+	for (int i = 0; i < length -1; i++)
+		append_array(output, array[i]);
 	
 	for (int i = 0; i < length - 1; i++) {
 		int temp = 0;
@@ -116,26 +159,19 @@ int* bubble_sort(int array[], int length) {
 			
 
 			if (array[j] > array[j + 1]) {
-				if (output.count >= output.capacity) {
-					output.capacity += sizeof(int);
-					output.number = realloc(output.number, output.capacity * sizeof(output.number));
-				}
-
 				temp = array[j];
 				array[j] = array[j + 1];
 				array[j + 1] = temp;
 
-				
-			}
+				// Copy the contents of the step
+				for (int k = 0; k < length - 1; k++)
+					append_array(output, array[k]);		
+			}	
+		}		
+	}
 
-			
-		}
-
-		
-	}	
-	printf("%d\n", size);
-
-	return &output;
+	for (int i = 0; i < output.count; i++)
+		printf("%d ", output.number[i]);
+	printf("\n");
 }
 
-*/
