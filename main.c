@@ -77,7 +77,8 @@ int main(void) {
 		printf("Make another choice or exit.\n");
 		scanf("%d", &choice);
 	}
-	
+
+	free(input.number);
 	
 	return 0;		
 }
@@ -173,5 +174,7 @@ void bubble_sort(int array[], int length) {
 	for (int i = 0; i < output.count; i++)
 		printf("%d ", output.number[i]);
 	printf("\n");
+
+	free(output.number);
 }
 
