@@ -1,2 +1,2 @@
 main: main.c
-	gcc main.c algorithms.c -o visual_algorithms
+	gcc main.c algorithms.c -lncurses -o visual_algorithms
