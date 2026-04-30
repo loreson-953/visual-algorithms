@@ -1,6 +1,4 @@
-#include <stdio.h>
 #include <stdlib.h>
-#include <string.h>
 #include <ncurses.h>
 #include "algorithms.h"
 #include "ui.h"
