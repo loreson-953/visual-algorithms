@@ -20,6 +20,9 @@ do {\
 	array.number[array.count++] = input;\
  } while(0)
 
+int startx = 0;
+int starty = 0;
+
 int main(void) {
 
 	// User input initialization

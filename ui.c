@@ -1,13 +1,8 @@
+#include "ui.h"
 #include <ncurses.h>
 #include <string.h>
 
-#define WIDTH 30
-#define HEIGHT 10
-
-int startx = 0;
-int starty = 0;
-
-char *choices[] =
+const char *choices[] =
 	{
 		"1. Bubble Sort",
 		"0. Exit",
