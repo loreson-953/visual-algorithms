@@ -20,16 +20,26 @@ do {\
 
 int main(void) {
 
+	WINDOW *title_window;
+
+	window_info title_info;
+	title_info.start_x = title_info.start_y = 0;
+	title_info.height = 5;
+	title_info.width = 40;
+	
 	// User input initialization
 	dynamic_array input;
 	input.count = 0; 
 	input.capacity = 10; // 10 is a decent place to start with
 	input.number = malloc(input.capacity * sizeof(input.number));
-	
-	ncurse_init();
 
-	printw("Hello world.");
-	refresh();
+	// Initialize ncurses
+	ncurse_initialization();
+
+	// Create and print to title window
+	title_window = create_new_window(title_info.height, title_info.width, title_info.start_y, title_info.start_x);
+	mvwprintw(title_window, title_info.start_y / 2, title_info.start_x / 2, "Welcome to Visual Algorithms.");
+	wrefresh(title_window);
 
 	getch();
 	endwin();

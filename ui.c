@@ -1,8 +1,19 @@
 #include "ui.h"
 #include <ncurses.h>
 
-void ncurse_init(void) {
+void ncurse_initialization(void) {
 	initscr();
 	raw();
 	noecho();
+	keypad(stdscr, TRUE);
+}
+
+
+WINDOW *create_new_window(int height, int width, int start_y, int start_x) {
+	WINDOW *local_window;
+
+	local_window = newwin(height, width, start_y, start_x);
+	box(local_window, 0, 0);
+
+	return local_window;
 }
