@@ -25,7 +25,9 @@ int main(void) {
 	window_info title_info;
 	title_info.start_x = title_info.start_y = 0;
 	title_info.height = 5;
-	title_info.width = 40;
+	title_info.width = 100;
+	char title_text[] = "Welcome to Visual Algorithms.";
+	int title_text_length = sizeof(title_text) / sizeof(char);
 	
 	// User input initialization
 	dynamic_array input;
@@ -35,12 +37,13 @@ int main(void) {
 
 	// Initialize ncurses
 	ncurse_initialization();
-
+	refresh();
+	
 	// Create and print to title window
 	title_window = create_new_window(title_info.height, title_info.width, title_info.start_y, title_info.start_x);
-	mvwprintw(title_window, title_info.start_y / 2, title_info.start_x / 2, "Welcome to Visual Algorithms.");
+	mvwprintw(title_window, title_info.height / 2, (title_info.width - title_text_length) / 2, title_text);
 	wrefresh(title_window);
-
+	
 	getch();
 	endwin();
 	
