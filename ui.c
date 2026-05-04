@@ -19,3 +19,24 @@ WINDOW *create_new_window(int height, int width, int start_y, int start_x) {
 
 	return local_window;
 }
+
+void print_options_window(int highlight) {
+	mvwprintw(options_window, 2, 2, "Options:");
+	
+	switch(highlight) {
+	case 4:
+		wattron(options_window, A_REVERSE);
+		mvwprintw(options_window, 4, 2, "1. Bubble Sort");
+		wattroff(options_window, A_REVERSE);
+		mvwprintw(options_window, 5, 2, "0. Exit");
+		break;
+	case 5:
+		mvwprintw(options_window, 4, 2, "1. Bubble Sort");
+		wattron(options_window, A_REVERSE);
+		mvwprintw(options_window, 5, 2, "0. Exit");
+		wattroff(options_window, A_REVERSE);
+		break;		
+	}
+
+	wrefresh(options_window);
+}

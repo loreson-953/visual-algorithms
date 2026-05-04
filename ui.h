@@ -14,8 +14,11 @@ typedef struct {
 	
 } window_info;
 
+extern WINDOW *options_window;
+
 void ncurse_initialization(void);
 
 WINDOW *create_new_window(int height, int width, int start_y, int start_x);
+void print_options_window(int highlight);
 
 #endif

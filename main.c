@@ -9,6 +9,9 @@ typedef struct {
 	size_t capacity;
 } dynamic_array;
 
+WINDOW *title_window;
+WINDOW *options_window;
+
 #define append_array(array, input)\
 do {\
 	if (array.count >= array.capacity) {\
@@ -20,19 +23,19 @@ do {\
 
 int main(void) {
 
-	WINDOW *title_window;
+	int key_input;
+	int highlight = 4;
+	
 	window_info title_info;
 	title_info.start_x = 4;
 	title_info.start_y = 1;
 	title_info.height = 5;
 	title_info.width = 100;
-
-	WINDOW *options_window;
 	window_info options_info;
 	options_info.start_x = title_info.start_x;
 	options_info.start_y = title_info.height + 2;
-	options_info.height = title_info.height + 3;
-	options_info.width = title_info.width;
+	options_info.height = 8;
+	options_info.width = 100;
 	 
 	// User input initialization
 	dynamic_array input;
@@ -50,16 +53,29 @@ int main(void) {
 	mvwprintw(title_window, title_info.height / 2, (title_info.width - 30) / 2, "Welcome to Visual Algorithms.");
 	wrefresh(title_window);
 
+	// Create and print to options window
 	options_window = create_new_window(options_info.height, options_info.width, options_info.start_y, options_info.start_x);
-	mvwprintw(options_window, 2, 2, "Options:");
-	wrefresh(options_window);
-	mvwprintw(options_window, 4, 2, "1. Bubble Sort");
-	wrefresh(options_window);
-	mvwprintw(options_window, 5, 2, "0. Exit");
-	wrefresh(options_window);
-	
-	getch();
+	print_options_window(highlight);
+
+	while(1) {
+		key_input = wgetch(options_window);
+		switch(key_input) {
+		case KEY_UP:
+			if (highlight == 4) highlight = 5;
+			else highlight--;
+			break;
+		case KEY_DOWN:
+			if (highlight == 5) highlight = 4;
+			else highlight++;
+			break;
+		case KEY_ENTER:
+			if (highlight == 5) goto end;
+			break;
+		}
+		print_options_window(highlight);		
+	}
+
+ end:
 	endwin();
-	
 	return 0;
 }
