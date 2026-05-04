@@ -45,7 +45,6 @@ int main(void) {
 
 	// Initialize ncurses
 	ncurse_initialization();
-	keypad(options_window, TRUE);
 	refresh();
 	
 	// Create and print to title window
@@ -55,8 +54,9 @@ int main(void) {
 
 	// Create and print to options window
 	options_window = create_new_window(options_info.height, options_info.width, options_info.start_y, options_info.start_x);
-	print_options_window(highlight);
-
+	keypad(options_window, TRUE);
+	print_options_window(options_window, highlight);
+	
 	while(1) {
 		key_input = wgetch(options_window);
 		switch(key_input) {
@@ -72,7 +72,7 @@ int main(void) {
 			if (highlight == 5) goto end;
 			break;
 		}
-		print_options_window(highlight);		
+		print_options_window(options_window, highlight);
 	}
 
  end:

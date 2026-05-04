@@ -3,8 +3,9 @@
 
 void ncurse_initialization(void) {
 	initscr();
-	raw();
+	clear();
 	noecho();
+	cbreak();
 	curs_set(0);
 }
 
@@ -20,7 +21,7 @@ WINDOW *create_new_window(int height, int width, int start_y, int start_x) {
 	return local_window;
 }
 
-void print_options_window(int highlight) {
+void print_options_window(WINDOW *options_window, int highlight) {
 	mvwprintw(options_window, 2, 2, "Options:");
 	
 	switch(highlight) {
