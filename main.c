@@ -9,9 +9,6 @@ typedef struct {
 	size_t capacity;
 } dynamic_array;
 
-WINDOW *title_window;
-WINDOW *options_window;
-
 #define append_array(array, input)\
 do {\
 	if (array.count >= array.capacity) {\
@@ -25,12 +22,15 @@ int main(void) {
 
 	int key_input;
 	int highlight = 4;
-	
+
+	WINDOW *title_window;
 	window_info title_info;
 	title_info.start_x = 4;
 	title_info.start_y = 1;
 	title_info.height = 5;
 	title_info.width = 100;
+
+	WINDOW *options_window;
 	window_info options_info;
 	options_info.start_x = title_info.start_x;
 	options_info.start_y = title_info.height + 2;
@@ -68,13 +68,17 @@ int main(void) {
 			if (highlight == 5) highlight = 4;
 			else highlight++;
 			break;
-		case KEY_ENTER:
+		case 10: // 10 is enter, for some reason
 			if (highlight == 5) goto end;
+			else if (highlight == 4) goto bubble;
 			break;
 		}
 		print_options_window(options_window, highlight);
 	}
 
+ bubble:
+	
+	
  end:
 	endwin();
 	return 0;
