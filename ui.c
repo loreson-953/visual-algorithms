@@ -6,7 +6,6 @@ void ncurse_initialization(void) {
 	raw();
 	noecho();
 	curs_set(0);
-	keypad(stdscr, TRUE);
 }
 
 
