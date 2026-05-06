@@ -41,3 +41,10 @@ void print_options_window(WINDOW *options_window, int highlight) {
 
 	wrefresh(options_window);
 }
+
+void destroy_window(WINDOW *local_window) {
+	wborder(local_window, ' ', ' ', ' ',' ',' ',' ',' ',' ');
+	wclear(local_window);
+	wrefresh(local_window);
+	delwin(local_window);
+}

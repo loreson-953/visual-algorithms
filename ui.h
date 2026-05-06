@@ -18,5 +18,6 @@ void ncurse_initialization(void);
 
 WINDOW *create_new_window(int height, int width, int start_y, int start_x);
 void print_options_window(WINDOW *options_window, int highlight);
+void destroy_window(WINDOW *local_window);
 
 #endif

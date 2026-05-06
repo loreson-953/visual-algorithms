@@ -77,7 +77,18 @@ int main(void) {
 	}
 
  bubble:
+	destroy_window(options_window);
+
+	WINDOW *bubble_window;
+	window_info bubble_info;
+	bubble_info.start_x = title_info.start_x;
+	bubble_info.start_y = title_info.height + 2;
+	bubble_info.height = 8;
+	bubble_info.width = 100;
+
 	
+	getch();
+	goto end;
 	
  end:
 	endwin();
