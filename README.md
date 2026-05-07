@@ -1,8 +1,8 @@
-# visual algorithms
+# Visual Algorithms
 
 A ncurses TUI for demonstrating algorithms.
 
-### compiling
+### Compiling
 
 Edit `config.mk` if necessary and then type:
 
