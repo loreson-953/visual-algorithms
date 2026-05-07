@@ -1,7 +1,8 @@
 CC = gcc
 TARGET = visual_algorithms
 SRCS = main.c ui.c algorithms.c
-CFLAGS = -lncurses -ltinfo
+
+include config.mk
 
 main:
 	${CC} -o ${TARGET} ${CFLAGS} ${SRCS}
