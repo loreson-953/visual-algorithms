@@ -16,7 +16,7 @@ do {\
 		array.number = realloc(array.number, array.capacity * sizeof(array.number));\
 	}\
 	array.number[array.count++] = input;\
- } while(0)
+} while(0)
 
 int main(void) {
 
@@ -36,17 +36,17 @@ int main(void) {
 	options_info.start_y = title_info.height + 2;
 	options_info.height = 8;
 	options_info.width = 100;
-	 
+
 	// User input initialization
 	dynamic_array input;
-	input.count = 0; 
+	input.count = 0;
 	input.capacity = 10; // 10 is a decent place to start with
 	input.number = malloc(input.capacity * sizeof(input.number));
 
 	// Initialize ncurses
 	ncurse_initialization();
 	refresh();
-	
+
 	// Create and print to title window
 	title_window = create_new_window(title_info.height, title_info.width, title_info.start_y, title_info.start_x);
 	mvwprintw(title_window, title_info.height / 2, (title_info.width - 30) / 2, "Welcome to Visual Algorithms.");
@@ -56,7 +56,7 @@ int main(void) {
 	options_window = create_new_window(options_info.height, options_info.width, options_info.start_y, options_info.start_x);
 	keypad(options_window, TRUE);
 	print_options_window(options_window, highlight);
-	
+
 	while(1) {
 		key_input = wgetch(options_window);
 		switch(key_input) {
