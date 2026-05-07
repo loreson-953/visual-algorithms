@@ -11,7 +11,7 @@ typedef struct {
 	char border_vertical;
 	char border_horizontal;
 	char border_corners;
-	
+
 } window_info;
 
 void ncurse_initialization(void);

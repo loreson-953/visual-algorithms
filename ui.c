@@ -23,7 +23,7 @@ WINDOW *create_new_window(int height, int width, int start_y, int start_x) {
 
 void print_options_window(WINDOW *options_window, int highlight) {
 	mvwprintw(options_window, 2, 2, "Options:");
-	
+
 	switch(highlight) {
 	case 4:
 		wattron(options_window, A_REVERSE);
@@ -36,7 +36,7 @@ void print_options_window(WINDOW *options_window, int highlight) {
 		wattron(options_window, A_REVERSE);
 		mvwprintw(options_window, 5, 2, "0. Exit");
 		wattroff(options_window, A_REVERSE);
-		break;		
+		break;
 	}
 
 	wrefresh(options_window);
